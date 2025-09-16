@@ -1,12 +1,11 @@
-
-//shorten the query
+//shorten query statements
 const todoList = document.querySelector('.todo-list'); 
 const postItem = document.getElementById('addItem');
+//create memory for todo list
 
-// Create list
 let todos = [];
 
-// Activate buttons
+//acitvate button
 postItem.addEventListener('click', postNewItem);
 
 function postNewItem() {
@@ -18,72 +17,55 @@ function postNewItem() {
 
     todos.unshift(item);
 
-    const { todoItemEl, todoInputEl, checkboxEl, editIconEl, deleteIconEl } = CreateTodoElement(item);
+    const { todoItemEl, todoInputEl, checkboxEl, deleteIconEl } = CreateTodoElement(item);
 
-    // Add to DOM
     todoList.prepend(todoItemEl);
 
-    // Enable editing new item immediately
-    todoInputEl.removeAttribute("disabled");
     todoInputEl.focus();
 
-    // Checkbox toggle complete
+    // Checkbox: toggle logic completed and disables the textarea
     checkboxEl.addEventListener("change", () => {
         item.complete = checkboxEl.checked;
-        todoInputEl.classList.toggle("completed", item.complete);
-    });
 
-    // Edit button
-    editIconEl.addEventListener("click", () => {
-        if (todoInputEl.disabled) {
-            todoInputEl.removeAttribute("disabled");
-            todoInputEl.focus();
+        if (item.complete) {
+            todoInputEl.classList.add("completed"); // apply completed only to textarea
+            todoInputEl.setAttribute("disabled", true); // lock edits
         } else {
-            todoInputEl.setAttribute("disabled", true);
-            item.text = todoInputEl.value; // save changes
+            todoInputEl.classList.remove("completed"); // remove completed from textarea
+            todoInputEl.removeAttribute("disabled"); // allows editing
         }
     });
 
-    // Delete button
+    // trash can removes the entire row
     deleteIconEl.addEventListener("click", () => {
         todoList.removeChild(todoItemEl);
-        todos = todos.filter(t => t.id !== item.id); // remove from array
+        todos = todos.filter(t => t.id !== item.id);
     });
 }
 
 function CreateTodoElement(item) {
-    // main container
     const todoItemEl = document.createElement("div");
     todoItemEl.classList.add("todo-item");
 
-    // checkbox
     const checkboxEl = document.createElement("input");
     checkboxEl.type = "checkbox";
     checkboxEl.checked = item.complete;
 
-    // textarea
     const todoInputEl = document.createElement("textarea");
     todoInputEl.classList.add("todoItem");
     todoInputEl.value = item.text;
-    todoInputEl.setAttribute("disabled", true);
 
-    // icons
     const iconsEl = document.createElement("section");
     iconsEl.classList.add("icons");
-
-    const editIconEl = document.createElement("i");
-    editIconEl.classList.add("fa-solid", "fa-pencil");
 
     const deleteIconEl = document.createElement("i");
     deleteIconEl.classList.add("fa-solid", "fa-trash");
 
-    // append
-    iconsEl.appendChild(editIconEl);
     iconsEl.appendChild(deleteIconEl);
 
     todoItemEl.appendChild(checkboxEl);
     todoItemEl.appendChild(todoInputEl);
     todoItemEl.appendChild(iconsEl);
 
-    return { todoItemEl, todoInputEl, checkboxEl, editIconEl, deleteIconEl };
+    return { todoItemEl, todoInputEl, checkboxEl, deleteIconEl }; 
 }

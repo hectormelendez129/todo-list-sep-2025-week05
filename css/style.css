@@ -19,13 +19,7 @@ html {
   display: flex;
   justify-content: center;
   padding-top: 20px;
-}
-
-/******************************************
-/* LAYOUT
-/*******************************************/
-html {
-  background-color: rgb(63, 0, 139, .6);
+  background-color: rgba(63, 0, 139, 0.6);
 }
 
 body {
@@ -49,33 +43,44 @@ header p {
   color: white;
 }
 
+/* Container for all todos */
 .todo-list {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: column; /* stack todo-item vertically */
   gap: 1rem;
-  background-color: rgb(63, 0, 139, .4);
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 1rem 2rem;
   margin-bottom: 2rem;
 }
 
-.todo-list input[type="checkbox"] {
+/* Each todo item */
+.todo-item {
+  display: flex;
+  flex-direction: row; /* inner layout: checkbox, textarea, icons */
+  align-items: center;
+  gap: 1rem;
+  background-color: rgba(63, 0, 139, 0.4);
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+}
+
+/* Checkbox */
+.todo-item input[type="checkbox"] {
   margin: 0;
 }
 
-.todo-list textarea {
+/* Textarea */
+.todo-item textarea {
   appearance: none;
   background: none;
-  border: none;
   resize: none;
   height: 20px;
   flex: 1 1 0%;
   border-radius: 5px;
+  color: white;
+  padding-left: 5px;
 }
 
-.todo-list textarea:not(:disabled) {
+.todo-item textarea:not(:disabled) {
   text-decoration: underline;
 }
 
@@ -84,30 +89,35 @@ header p {
   outline: 2px solid white;
 }
 
-.completed {
-  text-decoration: line-through;
+/* Completed todo item */
+.todo-item textarea.completed {
+    text-decoration: line-through;
+    color: rgba(255, 255, 255, 0.5);
 }
 
-.todo-list textarea::placeholder {
+
+.todo-item textarea::placeholder {
   color: white;
   padding-top: 2px;
 }
-.todo-item{
-  display: flex;
-}
-.todo-list .todo-item input{
-  margin-right: 1rem;
-}
+
+/* Icons */
 .icons {
   display: flex;
   gap: 1rem;
-  margin-left: 1rem;
 }
 
 .icons i:hover {
   opacity: .5;
 }
+.fa-trash:hover{
+    color: red;
+}
+#addItem:hover{
+  color: yellow;
+}
 
+/* Footer */
 h3 {
   margin-top: 20px;
 }
@@ -116,7 +126,18 @@ footer {
   font-size: x-small;
   text-align: center;
 }
-
-/******************************************
-/* ADDITIONAL STYLES
-/*******************************************/
+@media screen and (max-width: 650px) {
+  body{
+  margin: .5rem;
+  }
+}
+@media screen and (max-width: 350px) {
+  .todo-item{
+    flex-direction: column;
+  }
+  #addItem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
