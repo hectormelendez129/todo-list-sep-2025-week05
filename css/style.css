@@ -51,12 +51,18 @@ header p {
 
 .todo-list {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  background-color: rgb(63, 0, 139, .4);
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  margin-bottom: 2rem;
 }
 
 .todo-list input[type="checkbox"] {
-  margin-right: 1rem;
+  margin: 0;
 }
 
 .todo-list textarea {
@@ -64,16 +70,51 @@ header p {
   background: none;
   border: none;
   resize: none;
-height: 20px;
-}
-.todo-list textarea::placeholder{
-    color: white;
-    padding-top: 2px;
+  height: 20px;
+  flex: 1 1 0%;
+  border-radius: 5px;
 }
 
+.todo-list textarea:not(:disabled) {
+  text-decoration: underline;
+}
+
+.todoItem:hover,
+.todoItem:focus-within {
+  outline: 2px solid white;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+.todo-list textarea::placeholder {
+  color: white;
+  padding-top: 2px;
+}
+.todo-item{
+  display: flex;
+}
+.todo-list .todo-item input{
+  margin-right: 1rem;
+}
+.icons {
+  display: flex;
+  gap: 1rem;
+  margin-left: 1rem;
+}
+
+.icons i:hover {
+  opacity: .5;
+}
 
 h3 {
   margin-top: 20px;
+}
+
+footer {
+  font-size: x-small;
+  text-align: center;
 }
 
 /******************************************
