@@ -79,15 +79,19 @@ header p {
   color: white;
   padding-left: 5px;
 }
-
+/* Source: tyler potts(https://www.youtube.com/watch?v=6eFwtaZf6zc&t=11s) & (https://www.youtube.com/watch?v=3OqWCGVaOkA&t=604s)
+ */
 .todo-item textarea:not(:disabled) {
   text-decoration: underline;
 }
 
 .todoItem:hover,
+/* Source: tyler potts(https://www.youtube.com/watch?v=6eFwtaZf6zc&t=11s) & (https://www.youtube.com/watch?v=3OqWCGVaOkA&t=604s)
+ */
 .todoItem:focus-within {
   outline: 2px solid white;
 }
+
 
 /* Completed todo item */
 .todo-item textarea.completed {

@@ -24,6 +24,7 @@ function postNewItem() {
     todoInputEl.focus();
 
     // Checkbox: toggle logic completed and disables the textarea
+    //Source: tyler potts(https://www.youtube.com/watch?v=6eFwtaZf6zc&t=11s) & (https://www.youtube.com/watch?v=3OqWCGVaOkA&t=604s)
     checkboxEl.addEventListener("change", () => {
         item.complete = checkboxEl.checked;
 
@@ -39,10 +40,10 @@ function postNewItem() {
     // trash can removes the entire row
     deleteIconEl.addEventListener("click", () => {
         todoList.removeChild(todoItemEl);
-        todos = todos.filter(t => t.id !== item.id);
+        todos = todos.filter(t => t.id !== item.id); 
     });
 }
-
+//Source: tyler potts(https://www.youtube.com/watch?v=6eFwtaZf6zc&t=11s) & (https://www.youtube.com/watch?v=3OqWCGVaOkA&t=604s)
 function CreateTodoElement(item) {
     const todoItemEl = document.createElement("div");
     todoItemEl.classList.add("todo-item");
